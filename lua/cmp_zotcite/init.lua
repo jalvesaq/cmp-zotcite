@@ -134,7 +134,7 @@ source.complete = function(_, request, callback)
     local text_edit_range = {
         start = {
             line = request.context.cursor.line,
-            character = request.offset,
+            character = request.offset - 1,
         },
         ['end'] = {
             line = request.context.cursor.line,
