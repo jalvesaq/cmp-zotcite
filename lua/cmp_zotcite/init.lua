@@ -144,6 +144,9 @@ source.complete = function(_, request, callback)
 
     -- Get matching Zotero keys
     local fullfname = vim.fn.expand("%:p")
+    if vim.fn.has('win32') == 1 then
+        fullfname = string.gsub(tostring(fullfname), '\\', '/')
+    end
     local itms = vim.fn.py3eval('ZotCite.GetMatch("' .. input .. '", "' .. fullfname .. '")')
     if itms then
         for _, v in pairs(itms) do
