@@ -2,7 +2,7 @@ local cmp = require'cmp'
 
 local source = { }
 
-local options = { filetypes = {'markdown', 'rmd', 'quarto'}}
+local options = { filetypes = {'markdown', 'rmd', 'quarto', 'vimwiki'}}
 
 source.new = function()
     local self = setmetatable({}, { __index = source })
