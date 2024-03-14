@@ -103,31 +103,7 @@ source.complete = function(_, request, callback)
     end
 
     local resp = {}
-
-    -- Get local labels
-    local labels = {}
-    for _, v in pairs(lines) do
-        if string.find(v, "#| label: ") then
-            table.insert(labels, (string.gsub(v, "#| label: ", "")))
-        else
-            if string.find(v, "{#") then
-                table.insert(labels, (string.gsub((string.gsub(v, ".*{#*", "")), "[,; }].*", "")))
-            end
-        end
-    end
-
     local input = string.sub(request.context.cursor_before_line, request.offset)
-
-    -- Get matching local labels
-    if labels then
-        for _, v in pairs(labels) do
-            if string.find(v, input) then
-                table.insert(resp,
-                             {label = v,
-                              kind = cmp.lsp.CompletionItemKind.Reference})
-            end
-        end
-    end
 
     -- We have to set the the text edit range because zotcite displays author
     -- names in the menu but inserts a Zotero Key
