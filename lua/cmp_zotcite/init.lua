@@ -126,9 +126,18 @@ source.complete = function(_, request, callback)
     local itms = vim.fn.py3eval('ZotCite.GetMatch("' .. input .. '", "' .. fullfname .. '")')
     if itms then
         for _, v in pairs(itms) do
-            table.insert(resp, {label = v[2] .. " " .. v[3],
-            kind = cmp.lsp.CompletionItemKind.Reference,
-            textEdit = {newText = v[1], range = text_edit_range}})
+            local txt = v[2] .. " " .. v[3]
+            if vim.fn.strwidth(txt) > 58 then
+                txt = vim.fn.strcharpart(txt, 0, 58) .. "⋯"
+            end
+            table.insert(resp, {
+                label = txt,
+                kind = cmp.lsp.CompletionItemKind.Reference,
+                textEdit = {
+                    newText = v[1],
+                    range = text_edit_range
+                }
+            })
         end
     end
     callback({ items = resp })
