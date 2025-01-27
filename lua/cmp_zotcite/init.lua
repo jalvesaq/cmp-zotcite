@@ -1,4 +1,5 @@
-local cmp = require'cmp'
+local cmp = require("cmp")
+local zc = require("zotcite.config")
 
 local source = { }
 
@@ -123,6 +124,7 @@ source.complete = function(_, request, callback)
     if vim.fn.has('win32') == 1 then
         fullfname = string.gsub(tostring(fullfname), '\\', '/')
     end
+    if not zc.inited() then zc.init() end
     local itms = vim.fn.py3eval('ZotCite.GetMatch("' .. input .. '", "' .. fullfname .. '")')
     if itms then
         for _, v in pairs(itms) do
