@@ -3,7 +3,7 @@ local zc = require("zotcite.config")
 
 local source = {}
 
-local options = { filetypes = { "markdown", "rmd", "quarto", "vimwiki" } }
+local options = { filetypes = { "markdown", "rmd", "quarto", "typst", "vimwiki" } }
 
 source.new = function()
     local self = setmetatable({}, { __index = source })
@@ -22,9 +22,9 @@ source.is_available = function()
 end
 
 source.resolve = function(_, completion_item, callback)
-    vim.schedule(require("zotcite.config").hl_citations)
+    vim.schedule(require("zotcite.hl").citations)
     if not completion_item.textEdit then return callback(completion_item) end
-    local zkey = string.gsub(completion_item.textEdit.newText, "#.*", "")
+    local zkey = string.gsub(completion_item.textEdit.newText, "%-.*", "")
     local ref = vim.fn.py3eval('ZotCite.GetRefData("' .. zkey .. '")')
     if ref then
         local doc = ""

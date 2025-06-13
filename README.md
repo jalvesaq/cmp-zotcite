@@ -23,7 +23,7 @@ require'cmp'.setup {
 
 ## Configuration
 
-The source is enabled for `markdown`, `rmd` and `quarto` file types by
+The source is enabled for `markdown`, `rmd`, `typst`, and `quarto` file types by
 default, but you can change this:
 
 ```lua
