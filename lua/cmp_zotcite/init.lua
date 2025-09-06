@@ -134,7 +134,7 @@ source.complete = function(_, request, callback)
 end
 
 source.execute = function(_, item, cb)
-    vim.schedule(require("zotcite.config").hl_citations)
+    vim.schedule(require("zotcite.hl").citations)
     cb(item)
 end
 
