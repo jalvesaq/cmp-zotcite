@@ -6,11 +6,14 @@ local source = {}
 local options = { filetypes = { "markdown", "rmd", "quarto", "typst", "vimwiki" } }
 
 source.new = function()
-    vim.notify(
-        "Please, uninstall cmp_zotcite. It's obsolete because Zotcite now includes a LSP server",
-        vim.log.levels.WARN,
-        { title = "cmp-zotcite" }
-    )
+    -- TODO: remove this when nvim 0.12 is released
+    if vim.lsp.config then
+        vim.notify(
+            "Please, uninstall cmp_zotcite. Zotcite now includes a LSP server",
+            vim.log.levels.WARN,
+            { title = "cmp-zotcite" }
+        )
+    end
     local self = setmetatable({}, { __index = source })
     return self
 end
