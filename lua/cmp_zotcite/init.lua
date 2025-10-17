@@ -6,6 +6,11 @@ local source = {}
 local options = { filetypes = { "markdown", "rmd", "quarto", "typst", "vimwiki" } }
 
 source.new = function()
+    vim.notify(
+        "Please, uninstall cmp_zotcite. It's obsolete because Zotcite now includes a LSP server",
+        vim.log.levels.WARN,
+        { title = "cmp-zotcite" }
+    )
     local self = setmetatable({}, { __index = source })
     return self
 end
@@ -134,7 +139,7 @@ source.complete = function(_, request, callback)
 end
 
 source.execute = function(_, item, cb)
-    vim.schedule(require("zotcite.config").hl_citations)
+    vim.schedule(require("zotcite.hl").citations)
     cb(item)
 end
 
