@@ -1,5 +1,6 @@
 # cmp-zotcite
 
+**NOTE**: `cmp-zotcite` is obsolete because `zotcite` now includes a built-in LSP server.
 
 Zotero completion source for [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) using [zotcite](https://github.com/jalvesaq/zotcite) as backend.
 
